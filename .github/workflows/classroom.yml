@@ -21,7 +21,7 @@ jobs:
         setup-command: ''
         command: make test try=Node
         timeout: 10
-        max-score: 1
+        max-score: 20
     - name: createTree
       id: createtree
       uses: classroom-resources/autograding-command-grader@v1
@@ -30,7 +30,7 @@ jobs:
         setup-command: ''
         command: make test try=createTree
         timeout: 10
-        max-score: 1
+        max-score: 20
     - name: searchTree
       id: searchtree
       uses: classroom-resources/autograding-command-grader@v1
@@ -39,7 +39,7 @@ jobs:
         setup-command: ''
         command: make test try=searchTree
         timeout: 10
-        max-score: 1
+        max-score: 20
     - name: treeSize
       id: treesize
       uses: classroom-resources/autograding-command-grader@v1
@@ -48,7 +48,7 @@ jobs:
         setup-command: ''
         command: make test try=treeSize
         timeout: 10
-        max-score: 1
+        max-score: 20
     - name: treeHeight
       id: treeheight
       uses: classroom-resources/autograding-command-grader@v1
@@ -57,7 +57,16 @@ jobs:
         setup-command: ''
         command: make test try=treeHeight
         timeout: 10
-        max-score: 1
+        max-score: 10
+    - name: countLeaves
+      id: countleaves
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: countLeaves
+        setup-command: ''
+        command: make test try=countLeaves
+        timeout: 10
+        max-score: 20
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
@@ -66,5 +75,6 @@ jobs:
         SEARCHTREE_RESULTS: "${{steps.searchtree.outputs.result}}"
         TREESIZE_RESULTS: "${{steps.treesize.outputs.result}}"
         TREEHEIGHT_RESULTS: "${{steps.treeheight.outputs.result}}"
+        COUNTLEAVES_RESULTS: "${{steps.countleaves.outputs.result}}"
       with:
-        runners: node,createtree,searchtree,treesize,treeheight
+        runners: node,createtree,searchtree,treesize,treeheight,countleaves
